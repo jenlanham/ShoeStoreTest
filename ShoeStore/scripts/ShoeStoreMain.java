@@ -238,7 +238,7 @@ public class ShoeStoreMain {
 			System.out.println("ACTION: Click on the Submit Query button.");
 			sText = browser.findElement(ShoeStore.stMessage).getText();
 			System.out.println("ACTION: Extract the text from the Message displayed.");
-			if (sText.equals("Invalid Code format")) {
+			if (sText.equals("Invalid code format")) {
 				System.out.println("Test Case "+ iCase++ + ": -PASS- Expect Result: Message displayed:  \"Invalid Code format\" ");
 				iCasePass++;
 			} else {
