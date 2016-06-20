@@ -215,7 +215,38 @@ public class ShoeStoreMain {
 				}
 			} else {
 				System.err.println("Error: The All Shoes page did not display as expected.");
-			}		
+			}
+			
+			//PROMOTION CODE
+			//Submit without entering a code
+			browser.findElement(ShoeStore.btnSubmitPromo).click();
+			System.out.println("ACTION: Click on the Promo Code Submit Query button.");
+			sText = browser.findElement(ShoeStore.stMessage).getText();
+			System.out.println("ACTION: Extract the text from the Message displayed.");
+			if (sText.equals("Please enter a promotional code")) {
+				System.out.println("Test Case "+ iCase++ + ": -PASS- Expect Result: Message displayed:  \"Please enter a promotional code.\" ");
+				iCasePass++;
+			} else {
+				System.err.println("Test Case "+ iCase++ + ": -FAIL - Expect Result: Message displayed:  \"Please enter a promotional code.\" \n\t\t\tActual Result:  " + sText);
+				iCaseFail++;
+			}
+			
+			//verify error message after submitting invalid email address
+			browser.findElement(ShoeStore.tfPromotionalCode).sendKeys("invalid");
+			System.out.println("ACTION: Enter an invalid promotional code.");
+			browser.findElement(ShoeStore.btnSubmitPromo).click();
+			System.out.println("ACTION: Click on the Submit Query button.");
+			sText = browser.findElement(ShoeStore.stMessage).getText();
+			System.out.println("ACTION: Extract the text from the Message displayed.");
+			if (sText.equals("Invalid Code format")) {
+				System.out.println("Test Case "+ iCase++ + ": -PASS- Expect Result: Message displayed:  \"Invalid Code format\" ");
+				iCasePass++;
+			} else {
+				System.err.println("Test Case "+ iCase++ + ": -FAIL - Expect Result: Message displayed:  \"Invalid Code format\" \n\t\t\tActual Result:  " + sText);
+				iCaseFail++;
+			}
+			
+			
 			browser.findElement(ShoeStore.lnkHome).click();
 			System.out.println("ACTION: Click on the Home link.");
 				
